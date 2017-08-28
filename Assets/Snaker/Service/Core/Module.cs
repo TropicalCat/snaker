@@ -11,6 +11,7 @@ namespace Snaker.Service.Core
 		public virtual void Release()
 		{
 			this.Log ("Release");
+			this.Log ("");
 		}
 	}
 }
