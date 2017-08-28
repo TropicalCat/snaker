@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using SGF;
 
 namespace Snaker.Service.Core
@@ -59,6 +60,51 @@ namespace Snaker.Service.Core
 		}
 
 		//===============================================
+
+		internal void HandleMessage(string msg, object[] args)
+		{
+			this.Log ("HangleMessage() msg:{0}, args{1} ",msg, args);
+
+
+			MethodInfo mi = this.GetType ().GetMethod (msg, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+			if (mi != null) 
+			{
+				mi.Invoke (this, System.Reflection.BindingFlags.NonPublic, null, args, null);
+			} 
+			else
+			{
+				OnModuleMessage (msg, args);
+			}
+		}
+
+		protected virtual void OnModuleMessage(string msg, object[] args)
+		{
+			this.Log ("OnModuleMessage() msg:{0}, args{1} ",msg, args);
+		}
+
+		//===============================================
+
+		public virtual void Create(object args = null)
+		{
+			this.Log ("Create() args = {0}", args);
+		}
+
+		public override void Release()
+		{
+			if (m_tblEvent != null) 
+			{
+				m_tblEvent.Clear ();
+				m_tblEvent = null;
+			}
+
+			base.Release ();
+		}
+
+		public virtual void Show()
+		{
+			this.Log ("Show()");
+		}
 
 	}
 }
