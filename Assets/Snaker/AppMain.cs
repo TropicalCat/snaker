@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SGF;
-using Snaker.Service.Core.Example;
+using Snaker.Module.Framework.Example;
 
 public class AppMain : MonoBehaviour {
 
