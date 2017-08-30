@@ -96,6 +96,5 @@ namespace SGF
 			return "";
 		}
 	}
-
 }
 
