@@ -56,7 +56,7 @@ namespace SGF.UI.Framework
 			GameObject root = FindUIRoot ();
 			if (root != null) 
 			{
-				obj = root.transform.FindChild (name);
+				obj = root.transform.Find (name);
 			}
 
 			if (obj != null) 
