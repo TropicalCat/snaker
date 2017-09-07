@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Snaker.Module;
 using Snaker.Service.UserManager.Data;
 using SGF.UI.Framework;
-using Snaker.Module.Framework;
-
-
+using SGF.Module.Framework;
+using Snaker.Module;
 
 namespace Snaker.UI.Login
 {
@@ -19,9 +17,9 @@ namespace Snaker.UI.Login
 		protected override void OnOpen(object arg)
 		{
 			base.OnOpen (arg);
-			//UserData ud = AppConfig.Value.mainUserData;
-			//inputName.text = ud.name;
-			//inputId.text = ud.id.ToString ();
+			UserData ud = AppConfig.Value.mainUserData;
+			inputName.text = ud.name;
+			inputId.text = ud.id.ToString ();
 		}
 
 		public void OnBtnLogin()
@@ -34,11 +32,11 @@ namespace Snaker.UI.Login
 				userId = (uint)Random.Range (100000, 999999);
 			}
 
-			//var module = ModuleManager.Instance.GetModule (ModuleDef.LoginModule) as LoginModule;
-			//if (module != null)
-			//{
-			//	module.Login(userId, userName, "");
-			//}
+			var module = ModuleManager.Instance.GetModule (ModuleDef.LoginModule) as LoginModule;
+			if (module != null)
+			{
+				module.Login(userId, userName, "");
+			}
 		}
 	
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Snaker.Module.Framework;
+using SGF.Module.Framework;
 
 
 namespace SGF.UI.Framework
