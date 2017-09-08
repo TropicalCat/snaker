@@ -8,7 +8,7 @@ namespace SGF.UI.Framework
 {
 	public abstract class UIPanel : MonoBehaviour
 	{
-
+		
 		public virtual void Open(object arg = null)
 		{
 			this.Log ("Open() arg:{0}", arg);
@@ -42,8 +42,7 @@ namespace SGF.UI.Framework
 		{
 			this.Log ("OnOpen()");
 		}
-	}
 
-	
+	}
 }
 

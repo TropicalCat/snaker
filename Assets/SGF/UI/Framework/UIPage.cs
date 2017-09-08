@@ -112,9 +112,8 @@ namespace SGF.UI.Framework
 
 			OnClose (arg);
 		}
-
+			
 	}
-	
 }
 
 

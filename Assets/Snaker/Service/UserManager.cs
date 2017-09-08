@@ -4,7 +4,7 @@ using System.Collections;
 using Snaker.Service.UserManager.Data;
 using SGF.Module.Framework;
 
-namespace Snaker.Service.UserManager
+namespace Snaker.Service.User
 {
 	public class UserManager : ServiceModule<UserManager>
 	{

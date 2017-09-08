@@ -4,7 +4,7 @@ using UnityEngine;
 using Snaker.Service.UserManager.Data;
 using SGF.Module.Framework;
 using SGF.UI.Framework;
-using Snaker.Service.UserManager;
+using Snaker.Service.User;
 
 namespace Snaker.Module
 {

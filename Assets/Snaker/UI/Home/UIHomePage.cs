@@ -1,16 +1,94 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SGF.Module.Framework;
+using SGF.UI.Framework;
+using Snaker.Game.Data;
+using Snaker.Module;
+using Snaker.Service.UserManager.Data;
+using Snaker.Service.User;
+using UnityEngine.UI;
 
-public class UIHomePage : MonoBehaviour {
+namespace Snaker.UI.Home
+{
+	public class UIHomePage : UIPage
+	{
+		public Text txtUserInfo;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+		protected override void OnOpen(object arg = null)
+		{
+			base.OnOpen (arg);
+			UpdateUserInfo ();
+		}
+
+		private void UpdateUserInfo()
+		{
+			UserData ud = UserManager.Instance.MainUserData;
+			txtUserInfo.text = ud.name + "(Lv." + ud.level + ")";
+		}
+
+		public void OnBtnUserInfo()
+		{
+			UIAPI.ShowMsgBox ("重新登录", "是否重新登陆?", "确定|取消", o=>
+				{
+					if((int)o == 0)
+					{
+						HomeModule module = ModuleManager.Instance.GetModule(ModuleDef.HomeModule)as HomeModule;
+						module.TryReLogin();
+					}
+				});
+		}
+
+		private void OpenModule(string name, object arg = null)
+		{
+			var module = ModuleManager.Instance.GetModule (ModuleDef.HomeModule) as HomeModule;
+			if (module != null) 
+			{
+				module.OpenModule (name, arg);
+			}
+		}
+
+		public void OnBtnSetting()
+		{
+			OpenModule(ModuleDef.SettingModule);
+		}
+
+		public void OnBtnDailyCheckIn()
+		{
+			OpenModule(ModuleDef.DailyCheckInModule);
+		}
+
+		public void OnBtnActivity()
+		{
+			OpenModule(ModuleDef.ActivityModule);
+		}
+
+		public void OnBtnBuyCoin()
+		{
+			OpenModule(ModuleDef.ShopModule, "BuyCoin");
+		}
+
+		public void OnBtnFreeCoin()
+		{
+			OpenModule(ModuleDef.ShareModule);
+		}
+
+		public void OnBtnEndlessPVE()
+		{
+			OpenModule(ModuleDef.PVEModule, (int)GameMode.EndlessPVE);
+		}
+
+		public void OnBtnTimelimitPVE()
+		{
+			OpenModule(ModuleDef.PVEModule, (int)GameMode.TimelimitPVE);
+		}
+
+		public void OnBtnPVP()
+		{
+			OpenModule(ModuleDef.PVPModule, (int)GameMode.EndlessPVP);
+		}
+
 	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }
+
