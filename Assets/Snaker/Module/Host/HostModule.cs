@@ -1,16 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SGF.Module.Framework;
+using SGF.UI.Framework;
 
-public class HostModule : MonoBehaviour {
+namespace Snaker.Module
+{
+	public class HostModule : BusinessModule 
+	{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		private ModuleEvent onStartServer;
+		private ModuleEvent onCloseServer;
+
+		public override void Create(object args)
+		{
+			base.Create (args);
+			onStartServer = Event ("onStartServer");
+			onCloseServer = Event ("onCloseServer");
+		}
+			
+		protected override void Show(object arg)
+		{
+			UIManager.Instance.OpenPage (UIDef.UIHostWnd);
+		}
+
+
 	}
 }
